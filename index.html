@@ -25,11 +25,18 @@
                 <input type="text" id="textInput4" value="0">
                 <!--the browser will submit the form to the current URL-->
                 <input type="submit" value="Submit" onclick="mySubmitFunction(); return false;">
-                <p id="userAnswer">1</p>
+                <p id="userAnswer">0000</p>
             </fieldset>
         </form>
-
+        <div>
+            <p id="correctd"></p>
+            <p id="incorrectd"></p>
+        </div>
+        <div>
+            <button onclick="myStartGame();">Start Game</button>
+        </div>
     </div>
+
 
     <script src='https://code.jquery.com/jquery-3.4.0.min.js' integrity='sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=' crossorigin='anonymous'></script>
     <script src="js/script.js"></script>
