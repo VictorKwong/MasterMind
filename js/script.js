@@ -35,10 +35,8 @@ function mySubmitFunction() {
             check[ar[i]] = 1;
         }
     }
-    check[0] = userZero;
-    check[1] = userOne;
-    console.log("userZero:" + userZero);
-    console.log("userOne:" + userOne);
+    userZero = check[0];
+    userOne = check[1];
     console.log(answer);
     console.log(ar);
     //compare trueAnswer, correct digit(s), incorrect digit(s),correct digit(s) in worng position
@@ -53,11 +51,13 @@ function mySubmitFunction() {
     }
     if(cd != 0){
     document.getElementById('correctd').innerHTML = "Correct Digit(s): " + cd
-    }   
+    }
     if(incd <= 2 && countZero === userZero && countOne === userOne && cd != 4){
         document.getElementById('incorrectd').innerHTML = "Correct Digit(s) in wrong position: " + incd
     }else if(incd != 0){
         document.getElementById('incorrectd').innerHTML = "Incorrect Digit(s): " + incd
+    }else{
+        document.getElementById('incorrectd').innerHTML = ""
     }
 }
 
@@ -65,24 +65,22 @@ function mySubmitFunction() {
 function myStartGame(){
     check = {};
     //Math.floor(Math.random() *2)
-    for (let i = 1; i < 5 ; i++){
+    for (let i = 0; i < 4 ; i++){
         let x = Math.floor(Math.random() *2);
-        trueAr[i-1] = x;
-            if (i===1){
+        trueAr[i] = x;
+            if (i===0){
                 trueAnswer = "" + x;
             }else{
                 trueAnswer = trueAnswer + x;
             }
-            if (check[trueAr[i-1]]){
-                check[trueAr[i-1]] += 1;
+            if (check[trueAr[i]]){
+                check[trueAr[i]] += 1;
             } else {
-                check[trueAr[i-1]] = 1;
+                check[trueAr[i]] = 1;
             }
         }
-    check[0] = countZero;
-    check[1] = countOne;    
+    countZero = check[0];
+    countOne = check[1];    
     console.log(trueAnswer);
     console.log(trueAr);
-    console.log("countZ:" + countZero);
-    console.log("countOne:" + countOne);
 }
