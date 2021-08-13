@@ -8,3 +8,39 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
+/* setup */
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+.wrapper {
+    max-width: 1140px;
+    width: 90%;
+    margin: 0 auto;
+}
+/* start */
+.headerlayout{
+    text-align: center;
+}
+.hword{
+    font-family: lolita;
+    font-weight: bold;
+    color: sandybrown;
+}
+.secondscene{
+    display: none;
+}
+.flexbox{
+    display: flex;
+    flex-direction: column;
+    width: calc(25% - 10px);
+    margin-right: 10px;
+}
+.wrapflex{
+    display: flex;
+}

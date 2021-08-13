@@ -4,25 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- setup link css, style1 for level1-->
+    <link rel="stylesheet" href="./styles/style.css">
+    <title>MiniGame - Master Mind</title>
 </head>
 <body>
-    <div>
-        <h1>MasterMind</h1>
-        <p>Find the correct answer while attempt the least tries</p>
-    </div>
-    <div>
+    <section class="headerlayout">
+        <h2 class="hword">Mini Master Mind</h2>
+        <div class="firstscene">
+            <p>Guide: Find the correct answer while attempt the least tries</p>
+            <button onclick="myStartGame();">Start Game</button>
+        </div>
+    </section>
+    <div class="secondscene">
         <form action="" method="GET">
             <fieldset>
-                <legend>Find the right code</legend>
-                <input type="range" min="0" max="1" value="0" onchange="updateTextInput(this.value,'textInput1');">
-                <input type="text" id="textInput1" value="0">
-                <input type="range" min="0" max="1" value="0" onchange="updateTextInput(this.value,'textInput2');">
-                <input type="text" id="textInput2" value="0">
-                <input type="range" min="0" max="1" value="0" onchange="updateTextInput(this.value,'textInput3');">
-                <input type="text" id="textInput3" value="0">
-                <input type="range" min="0" max="1" value="0" onchange="updateTextInput(this.value,'textInput4');">
-                <input type="text" id="textInput4" value="0">
+                <legend>Find the hidden code</legend>
+                <div class="wrapflex">
+                    <div class="flexbox">
+                        <input type="range" min="0" max="1" value="0" onchange="updateTextInput(this.value,'textInput1');">
+                        <input type="text" id="textInput1" value="0">
+                    </div>
+                    <div class="flexbox">
+                        <input type="range" min="0" max="1" value="0" onchange="updateTextInput(this.value,'textInput2');">
+                        <input type="text" id="textInput2" value="0">
+                    </div>
+                    <div class="flexbox">
+                    <input type="range" min="0" max="1" value="0" onchange="updateTextInput(this.value,'textInput3');">
+                    <input type="text" id="textInput3" value="0">
+                    </div>
+                    <div class="flexbox">
+                    <input type="range" min="0" max="1" value="0" onchange="updateTextInput(this.value,'textInput4');">
+                    <input type="text" id="textInput4" value="0">
+                    </div>
+                </div>
                 <!--the browser will submit the form to the current URL-->
                 <input type="submit" value="Submit" onclick="mySubmitFunction(); return false;">
                 <p id="userAnswer">0000</p>
@@ -31,9 +46,6 @@
         <div>
             <p id="correctd"></p>
             <p id="incorrectd"></p>
-        </div>
-        <div>
-            <button onclick="myStartGame();">Start Game</button>
         </div>
     </div>
 

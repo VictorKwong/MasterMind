@@ -6,7 +6,16 @@ let countOne;
 let check = {};
 //DOM Challenge
 function updateTextInput(val,id) {
-    document.getElementById(id).value=val; 
+    document.getElementById(id).value=val;
+    for (let i = 1; i < 5; i++){
+        let x = 'textInput' + i;
+            if (i===1){
+                answer = "" + document.getElementById(x).value;
+            }else{
+                answer = answer + document.getElementById(x).value;
+            }
+        }
+    document.getElementById('userAnswer').innerHTML = answer;
 }
 
 //user submit answer
@@ -63,6 +72,7 @@ function mySubmitFunction() {
 
 //start, random generate answer
 function myStartGame(){
+    document.getElementsByClassName('secondscene')[0].style.display = 'block';
     check = {};
     //Math.floor(Math.random() *2)
     for (let i = 0; i < 4 ; i++){
