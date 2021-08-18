@@ -58,15 +58,24 @@ function mySubmitFunction() {
             incd = incd + 1;
         }
     }
+    //display comment
     if(cd != 0){
     document.getElementById('correctd').innerHTML = "Correct Digit(s): " + cd
+    }else{
+        document.getElementById('correctd').innerHTML = ""
     }
-    if(incd <= 2 && countZero === userZero && countOne === userOne && cd != 4){
+    if((incd === 2 || incd === 4) && countZero === userZero && countOne === userOne && cd != 4){
         document.getElementById('incorrectd').innerHTML = "Correct Digit(s) in wrong position: " + incd
     }else if(incd != 0){
         document.getElementById('incorrectd').innerHTML = "Incorrect Digit(s): " + incd
     }else{
         document.getElementById('incorrectd').innerHTML = ""
+    }
+    //check if wins
+    if(cd === 4){
+        document.getElementById('result').innerHTML = "You have access the hidden code!"
+    }else{
+        document.getElementById('result').innerHTML = ""
     }
 }
 
@@ -93,4 +102,6 @@ function myStartGame(){
     countOne = check[1];    
     console.log(trueAnswer);
     console.log(trueAr);
+    document.getElementsByClassName('firstscenebutton')[0].style.display = 'none';
+    
 }

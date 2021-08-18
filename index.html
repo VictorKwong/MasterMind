@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="./styles/style.css">
     <title>MiniGame - Master Mind</title>
 </head>
-<body>
+<body class="wrapper">
     <section class="headerlayout">
         <h2 class="hword">Mini Master Mind</h2>
         <div class="firstscene">
             <p>Guide: Find the correct answer while attempt the least tries</p>
-            <button onclick="myStartGame();">Start Game</button>
+            <button onclick="myStartGame();" class="firstscenebutton">Start Game</button>
         </div>
     </section>
     <div class="secondscene">
@@ -23,29 +23,31 @@
                 <div class="wrapflex">
                     <div class="flexbox">
                         <input type="range" min="0" max="1" value="0" onchange="updateTextInput(this.value,'textInput1');">
-                        <input type="text" id="textInput1" value="0">
+                        <input type="text" id="textInput1" value="0" disabled>
                     </div>
                     <div class="flexbox">
                         <input type="range" min="0" max="1" value="0" onchange="updateTextInput(this.value,'textInput2');">
-                        <input type="text" id="textInput2" value="0">
+                        <input type="text" id="textInput2" value="0" disabled>
                     </div>
                     <div class="flexbox">
                     <input type="range" min="0" max="1" value="0" onchange="updateTextInput(this.value,'textInput3');">
-                    <input type="text" id="textInput3" value="0">
+                    <input type="text" id="textInput3" value="0" disabled>
                     </div>
                     <div class="flexbox">
                     <input type="range" min="0" max="1" value="0" onchange="updateTextInput(this.value,'textInput4');">
-                    <input type="text" id="textInput4" value="0">
+                    <input type="text" id="textInput4" value="0" disabled>
                     </div>
                 </div>
                 <!--the browser will submit the form to the current URL-->
-                <input type="submit" value="Submit" onclick="mySubmitFunction(); return false;">
-                <p id="userAnswer">0000</p>
+                <div class="headerlayout">
+                    <p id="userAnswer">0000</p>
+                    <input class="submitlayout" type="submit" value="Submit" onclick="mySubmitFunction(); return false;">
             </fieldset>
         </form>
         <div>
             <p id="correctd"></p>
             <p id="incorrectd"></p>
+            <p id="result"></p>
         </div>
     </div>
 
