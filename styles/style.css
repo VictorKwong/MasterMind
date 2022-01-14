@@ -17,35 +17,116 @@ html {
 body {
     font-size: 1.6rem;
 }
+html, body {
+    overflow: hidden;
+}
+
 
 .wrapper {
     max-width: 1140px;
     width: 90%;
     margin: 0 auto;
+    background: #D3D0CBFF;
+    position: relative;
+}
+.contentWrap{
+    padding-bottom: 20px;
 }
 /* start */
-.headerlayout{
+.headerLayout{
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
 }
-.hword{
-    font-family: lolita;
+.hWord{
+    font-family: 'Source Code Pro', monospace;
     font-weight: bold;
-    color: sandybrown;
+    color: #2E5266FF;
+    font-size: 60px;  
 }
-.secondscene{
+
+.hintWord{
+    color: #2E5266FF;
+}
+
+.firstSceneButton{
+    width:200px;
+    margin: 20px 0px 20px 0px;
+    padding: 30px;
+    text-align: center;
+    color: #9FB1BCFF;
+    background: #2E5266FF;
+    opacity: 0.5;
+    transition: all 0.5s;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 20px;
+    box-shadow:  8px 8px 12px #6E8898FF, 
+    -8px -8px 12px #9FB1BCFF;
+    cursor: pointer;
+}
+
+.firstSceneButton:hover,
+.firstSceneButton:focus{
+    opacity: 1;
+    color: #2E5266FF;
+    background: #9FB1BCFF;
+}
+
+.secondScene{
+    padding-top: 30px;
     display: none;
+    height: 95vh;
+    color:#2E5266FF;
+    font-family: 'Cairo', sans-serif;
 }
-.flexbox{
+
+#modalBackground{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    
+}
+#modalContent{
+    background:#9FB1BCFF;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #2E5266FF;
+    width: 80%;
+}
+.close{
+    float:right;
+    font-size:20px;
+}
+.close:hover,
+.close:focus {
+  cursor: pointer;
+}
+
+.flexBox{
     display: flex;
     flex-direction: column;
     width: calc(25% - 10px);
     margin-right: 10px;
 }
-.wrapflex{
+.wrapFlex{
     display: flex;
     margin-bottom: 15px;
 }
-#submitlayout{
+
+fieldset{
+    min-width: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#submitLayout{
     /*button decoration*/
     position: relative;
     width: 120px;
@@ -54,18 +135,27 @@ body {
     font-weight: 600;
     text-align: center;
     line-height: 50px;
-    color: #FFF;
+    color: #2E5266FF;
     border-radius: 5px;
     transition: all 0.2s ;
-    background: #5DC8CD;
-    box-shadow: 0px 5px 0px 0px #1E8185;
+    background: #9FB1BCFF;
+    box-shadow: 0px 5px 0px 0px #6E8898FF;
+    font-family: 'Cairo', sans-serif;
+    cursor: pointer;
 }
-#submitlayout:hover {
+#submitLayout:hover,
+#submitLayout:focus{
     margin-top: 15px;
     margin-bottom: 5px;
-    box-shadow: 0px 0px 0px 0px #1E8185;
+    box-shadow: 0px 0px 0px 0px #6E8898FF;
 }
-
+.hint{
+    bottom:0;
+    right:0;
+    margin: 0;
+    position: absolute;
+    cursor: pointer;
+}
 .slider{
     width:25%;
     height:25px;
@@ -73,4 +163,44 @@ body {
 }
 .slider:hover{
     opacity: 1;
+}
+.resultLayout{
+    text-align: center;
+    position: relative;
+}
+
+.resultOverflow{
+    height:190px;
+    overflow: auto;
+    border: 2px solid #2E5266FF;
+}
+
+footer{
+    text-align: center;
+    font-family: 'Cairo', sans-serif;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20px; 
+}
+footer>a{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    color: #2E5266FF;
+}
+footer>a:hover span,
+footer>a:focus span{
+    display: none;
+}
+
+footer>a:hover:before,
+footer>a:focus:before{ 
+    content: "Click here to visit my portfolio! Don't forget to feed my monkey!🍌"
+}
+
+@media (max-width: 320px) {
+  .hWord{
+      font-size: 40px;
+}  
 }

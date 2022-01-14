@@ -80,14 +80,15 @@ function mySubmitFunction() {
     if(cd === 4){
         document.getElementById('result').innerHTML = "You have access the hidden code!"
         resultcomment += ", You have access the hidden code!"
-        document.getElementById("submitlayout").disabled = true;
+        document.getElementById("submitLayout").style.color = "green";
+        document.getElementById("submitLayout").disabled = true;
     }else{
         document.getElementById('result').innerHTML = ""
     }
     document.getElementById('tries').innerHTML = "Attempt: " + tries
 
 
-    let listResult = document.getElementById('resultstack');
+    let listResult = document.getElementsByClassName('resultOverflow')[0];
 
     let newListItem = document.createElement('p');
     newListItem.textContent = answer + resultcomment
@@ -97,12 +98,30 @@ function mySubmitFunction() {
         newListItem.style.color = "Red";
     }
     listResult.appendChild(newListItem);
-    //document.getElementById('resultstack').innerHTML += answer + resultcomment + "<br />"
+    listResult.scrollTop = listResult.scrollHeight;
 }
+
+//modal Hint Open
+let modal = document.getElementById("modalBackground")
+function myHintFunction(){
+    modal.style.display = "block";
+}
+//modal Hint Close
+document.getElementsByClassName("close")[0].onclick = modalCloseFunction;
+
+function modalCloseFunction(){
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
 
 //start, random generate answer
 function myStartGame(){
-    document.getElementsByClassName('secondscene')[0].style.display = 'block';
+    document.getElementsByClassName('secondScene')[0].style.display = 'block';
     check = {};
     //Math.floor(Math.random() *2)
     for (let i = 0; i < 4 ; i++){
@@ -121,6 +140,7 @@ function myStartGame(){
         }
     countZero = check[0];
     countOne = check[1];
-    document.getElementsByClassName('firstscenebutton')[0].style.display = 'none';
+    document.getElementsByClassName('firstScene')[0].style.display = 'none';
+    document.getElementsByClassName('headerLayout')[0].style.height = 'auto';
     
 }
