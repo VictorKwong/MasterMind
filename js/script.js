@@ -4,6 +4,7 @@ let trueAr = [];
 let countZero;
 let countOne;
 let check = {};
+let tries = 0;
 //DOM Challenge
 function updateTextInput(val,id) {
     document.getElementById(id).value=val;
@@ -24,6 +25,7 @@ function mySubmitFunction() {
     let answer;
     let userZero;
     let userOne;
+    let resultcomment;
     for (let i = 1; i < 5; i++){
         let x = 'textInput' + i;
         ar[i-1] = parseInt(document.getElementById(x).value);
@@ -46,8 +48,6 @@ function mySubmitFunction() {
     }
     userZero = check[0];
     userOne = check[1];
-    console.log(answer);
-    console.log(ar);
     //compare trueAnswer, correct digit(s), incorrect digit(s),correct digit(s) in worng position
     let cd = 0;
     let incd = 0;   
@@ -58,25 +58,46 @@ function mySubmitFunction() {
             incd = incd + 1;
         }
     }
+    tries = tries + 1;
     //display comment
     if(cd != 0){
     document.getElementById('correctd').innerHTML = "Correct Digit(s): " + cd
+    resultcomment = ", Correct Digit(s): " + cd
     }else{
         document.getElementById('correctd').innerHTML = ""
+        resultcomment = ""
     }
     if((incd === 2 || incd === 4) && countZero === userZero && countOne === userOne && cd != 4){
         document.getElementById('incorrectd').innerHTML = "Correct Digit(s) in wrong position: " + incd
+        resultcomment += ", Correct Digit(s) in wrong position: " + incd
     }else if(incd != 0){
         document.getElementById('incorrectd').innerHTML = "Incorrect Digit(s): " + incd
+        resultcomment += ", Incorrect Digit(s): " + incd
     }else{
         document.getElementById('incorrectd').innerHTML = ""
     }
     //check if wins
     if(cd === 4){
         document.getElementById('result').innerHTML = "You have access the hidden code!"
+        resultcomment += ", You have access the hidden code!"
+        document.getElementById("submitlayout").disabled = true;
     }else{
         document.getElementById('result').innerHTML = ""
     }
+    document.getElementById('tries').innerHTML = "Attempt: " + tries
+
+
+    let listResult = document.getElementById('resultstack');
+
+    let newListItem = document.createElement('p');
+    newListItem.textContent = answer + resultcomment
+    if(cd === 4){
+        newListItem.style.color = "Green";
+    }else{
+        newListItem.style.color = "Red";
+    }
+    listResult.appendChild(newListItem);
+    //document.getElementById('resultstack').innerHTML += answer + resultcomment + "<br />"
 }
 
 //start, random generate answer
@@ -99,9 +120,7 @@ function myStartGame(){
             }
         }
     countZero = check[0];
-    countOne = check[1];    
-    console.log(trueAnswer);
-    console.log(trueAr);
+    countOne = check[1];
     document.getElementsByClassName('firstscenebutton')[0].style.display = 'none';
     
 }

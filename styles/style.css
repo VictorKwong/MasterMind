@@ -45,7 +45,7 @@ body {
     display: flex;
     margin-bottom: 15px;
 }
-.submitlayout{
+#submitlayout{
     /*button decoration*/
     position: relative;
     width: 120px;
@@ -60,8 +60,17 @@ body {
     background: #5DC8CD;
     box-shadow: 0px 5px 0px 0px #1E8185;
 }
-.submitlayout:hover {
+#submitlayout:hover {
     margin-top: 15px;
     margin-bottom: 5px;
     box-shadow: 0px 0px 0px 0px #1E8185;
+}
+
+.slider{
+    width:25%;
+    height:25px;
+    opacity: 0.3;
+}
+.slider:hover{
+    opacity: 1;
 }

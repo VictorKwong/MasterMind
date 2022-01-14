@@ -41,13 +41,16 @@
                 <!--the browser will submit the form to the current URL-->
                 <div class="headerlayout">
                     <p id="userAnswer">0000</p>
-                    <input class="submitlayout" type="submit" value="Submit" onclick="mySubmitFunction(); return false;">
+                    <input id="submitlayout" type="submit" value="Submit" onclick="mySubmitFunction(this); return false;">
             </fieldset>
         </form>
         <div>
             <p id="correctd"></p>
             <p id="incorrectd"></p>
             <p id="result"></p>
+        </div>
+        <div id="resultstack">
+            <p id="tries"></p>
         </div>
     </div>
 
