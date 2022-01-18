@@ -20,5 +20,6 @@ Design Documents
    - Github
    - HTML, CSS, JavaScirpt
    
-Credit: Juno College
+4. Credit: 
+   - Juno College
 https://junocollege.com/
