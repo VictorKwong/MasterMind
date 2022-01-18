@@ -21,5 +21,4 @@ Design Documents
    - HTML, CSS, JavaScirpt
    
 4. Credit: 
-   - Juno College
-https://junocollege.com/
+   - Juno College - https://junocollege.com/
