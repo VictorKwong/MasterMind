@@ -126,7 +126,8 @@ fieldset{
     overflow: hidden;
 }
 
-#submitLayout{
+#submitLayout,
+#submitLayoutTwo{
     /*button decoration*/
     position: relative;
     width: 120px;
@@ -144,7 +145,9 @@ fieldset{
     cursor: pointer;
 }
 #submitLayout:hover,
-#submitLayout:focus{
+#submitLayout:focus,
+#submitLayoutTwo:hover,
+#submitLayoutTwo:focus{
     margin-top: 15px;
     margin-bottom: 5px;
     box-shadow: 0px 0px 0px 0px #6E8898FF;

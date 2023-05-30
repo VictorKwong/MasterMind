@@ -5,6 +5,28 @@ let countZero;
 let countOne;
 let check = {};
 let tries = 0;
+
+//Reset Game
+function resetGame(){
+    document.getElementById('tries').innerHTML = ""
+    document.getElementById('correctd').innerHTML = ""
+    document.getElementById('incorrectd').innerHTML = ""
+    document.getElementById('result').innerHTML = ""
+    let listResult = document.getElementsByClassName('resultOverflow')[0]
+    let newListItem = document.createElement('p');
+    newListItem.textContent = "--------------------Restart Game--------------------"
+    newListItem.style.color = "#EBA286";
+    listResult.appendChild(newListItem);
+    listResult.scrollTop = listResult.scrollHeight;
+    document.getElementById("submitLayout").style.color = "#6E8898FF";
+    document.getElementById("submitLayout").hidden = false;
+    document.getElementById("submitLayout").disabled = false;
+    tries = 0;
+    myStartGame()
+
+
+}
+
 //DOM Challenge
 function updateTextInput(val,id) {
     document.getElementById(id).value=val;
@@ -82,6 +104,8 @@ function mySubmitFunction() {
         resultcomment += ", You have access the hidden code!"
         document.getElementById("submitLayout").style.color = "green";
         document.getElementById("submitLayout").disabled = true;
+        document.getElementById("submitLayout").hidden = true;
+        document.getElementById("submitLayoutTwo").hidden = false;
     }else{
         document.getElementById('result').innerHTML = ""
     }
@@ -117,7 +141,8 @@ window.onclick = function(event) {
     if (event.target == modal) {
       modal.style.display = "none";
     }
-  }
+}
+
 
 //start, random generate answer
 function myStartGame(){
@@ -142,5 +167,6 @@ function myStartGame(){
     countOne = check[1];
     document.getElementsByClassName('firstScene')[0].style.display = 'none';
     document.getElementsByClassName('headerLayout')[0].style.height = 'auto';
+    document.getElementById("submitLayoutTwo").hidden = true;
     
 }
