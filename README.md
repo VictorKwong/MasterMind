@@ -2,6 +2,8 @@
 
 Design Documents
 
+Update - Result add .gif to celebrate winning
+
 1. Goal:
    - I'm going to build a web game called Mini Master Mind for entertainment. It is a prototype website to see how it works.
    Game Logic reference: 
