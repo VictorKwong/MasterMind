@@ -177,6 +177,22 @@ fieldset{
     overflow: auto;
     border: 2px solid #2E5266FF;
 }
+.gifLayoutBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#gifLayout{
+    width: 320px;
+    height: 320px;
+    border-radius: 10px;
+    transition: 0.3s all ease-in-out;
+}
+
+#gifLayout:hover,
+#gifLayout:focus{
+    scale: 1.15;
+}
 
 footer{
     text-align: center;

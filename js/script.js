@@ -106,6 +106,7 @@ function mySubmitFunction() {
         document.getElementById("submitLayout").disabled = true;
         document.getElementById("submitLayout").hidden = true;
         document.getElementById("submitLayoutTwo").hidden = false;
+        document.getElementById("gifLayout").hidden = false;
     }else{
         document.getElementById('result').innerHTML = ""
     }
@@ -168,5 +169,6 @@ function myStartGame(){
     document.getElementsByClassName('firstScene')[0].style.display = 'none';
     document.getElementsByClassName('headerLayout')[0].style.height = 'auto';
     document.getElementById("submitLayoutTwo").hidden = true;
+    document.getElementById("gifLayout").hidden = true;
     
 }
