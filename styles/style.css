@@ -16,6 +16,7 @@ html {
 
 body {
     font-size: 1.6rem;
+    background: #D3D0CBFF;
 }
 html, body {
     /* overflow: hidden; */
@@ -26,7 +27,6 @@ html, body {
     max-width: 1140px;
     width: 90%;
     margin: 0 auto;
-    background: #D3D0CBFF;
     position: relative;
 }
 .contentWrap{
@@ -77,9 +77,9 @@ html, body {
 .secondScene{
     padding-top: 30px;
     display: none;
-    height: 95vh;
     color:#2E5266FF;
     font-family: 'Cairo', sans-serif;
+    padding-bottom: 40px;
 }
 
 #modalBackground{
@@ -181,6 +181,7 @@ fieldset{
     display: none;
     justify-content: center;
     align-items: center;
+    padding-top: 30px;
 }
 
 #gifLayout{
@@ -199,7 +200,11 @@ footer{
     text-align: center;
     font-family: 'Cairo', sans-serif;
     width: 100%;
-    height: 5vh;
+    position: fixed;
+    padding: 10px 10px 0px 10px;
+    bottom: 0;
+    /* Height of the footer*/
+    height: 40px;
 }
 footer>a{
     margin: 0;
