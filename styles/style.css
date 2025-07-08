@@ -19,7 +19,8 @@ body {
     background: #D3D0CBFF;
 }
 html, body {
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 .wrapper {
     max-width: 1140px;
