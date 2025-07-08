@@ -22,44 +22,56 @@
             <div class="firstScene">
                 <h2 class="hWord">Mini Master Mind</h2>
                 <p class="hintWord">Goal: Find the correct answer while attempt the least tries💻</p>
-                <button onclick="myStartGame(); return false;" class="firstSceneButton">Start Game</button>
+                <button onclick="myStartGame(4); return false;" class="firstSceneButton">
+                    Easy<br>(4 digits)
+                </button>
+                <button onclick="myStartGame(6); return false;" class="firstSceneButton">
+                    Hard<br>(6 digits)
+                </button>
+
             </div>
         </section>
         <section class="secondScene">
-            <form action="" method="GET">
-                <fieldset>
-                    <legend>Find the hidden code</legend>
-                    <div id="inputContainer" class="wrapFlex"></div>
-                    <!--the browser will submit the form to the current URL-->
-                    <div class="resultLayout">
-                        <p class="hintWord">Input:</p>
-                        <p id="userAnswer">0000</p>
-                        <p class="hint" onclick="myHintFunction(); return false;">🌟Hint</p>
-                </fieldset>
-            </form>
-            <div id="modalBackground">
-            <div id="modalContent">
-                <span class="close">&times;</span>
-                <p class="hintWord">Help: Guess the 4-digit code from 0 to 9 💡</p>
-                <p class="hintWord">Goal: Find the correct answer while attempt the least tries💻</p>
-                <p class="hintWord">Click anywhere outside the box to close this :D</p>
-            </div>
+            <div id="fireworksContainer" class="hidden">
+                <div class="firework"></div>
+                <div class="firework"></div>
+                <div class="firework"></div>
             </div>
             <div id="resultStack">
-                <p id="correctd"></p>
-                <p id="incorrectd"></p>
-                <p id="result"></p>
-                <p id="tries"></p>
                 <div class="resultOverflow"></div>
             </div>
             <div class="gifLayoutBox">
                 <img src="./images/DrakePizza.gif" alt="DrakePizza" id="gifLayout" title="Drake Pizza">
             </div>
+            <form action="" method="GET">
+                <fieldset>
+                    <legend>Unlock The Hidden Code🔒</legend>
+                    <div id="inputContainer" class="wrapFlex"></div>
+                    <!--the browser will submit the form to the current URL-->
+                    <div class="resultLayout">
+                        <p class="hintWord">Input:</p>
+                        <p id="userAnswer"></p>
+                        <p class="hint" onclick="myHintFunction(); return false;">🌟Hint</p>
+                </fieldset>
+            </form>
+                <p id="correctd"></p>
+                <p id="incorrectd"></p>
+                <p id="result"></p>
+                <p id="tries"></p>
+            <div id="modalBackground">
+            <div id="modalContent">
+                <span class="close">&times;</span>
+                <p class="hintWord">Help: Guess the Easy(4) Hard(6) digits code from 0 to 9💡</p>
+                <p class="hintWord">Goal: Find the correct answer while attempt the least tries💻</p>
+                <p class="hintWord">Close: Click anywhere outside the box to close this, GLHF :D</p>
+            </div>
+            </div>
+
         </section>
     </div>
 
     <footer>
-        <a href="https://victorkaiwong.com/" target="_blank" onclick="myEasterEggFunction(); return false;"><span>Copyright <i class="far fa-copyright"></i> 2025 Victor Wong</span></a>
+        <a href="https://victorkaiwong.com/" target="_blank"><span>Copyright <i class="far fa-copyright"></i> 2025 Victor Wong</span></a>
     </footer>
 
 
