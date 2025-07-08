@@ -21,7 +21,7 @@
         <section class="headerLayout">
             <div class="firstScene">
                 <h2 class="hWord">Mini Master Mind</h2>
-                <p class="hintWord">Help: Find the correct answer while attempt the least tries💻</p>
+                <p class="hintWord">Goal: Find the correct answer while attempt the least tries💻</p>
                 <button onclick="myStartGame(); return false;" class="firstSceneButton">Start Game</button>
             </div>
         </section>
@@ -31,13 +31,9 @@
                     <legend>Find the hidden code</legend>
                     <div id="inputContainer" class="wrapFlex"></div>
                     <!--the browser will submit the form to the current URL-->
-                    <p class="hintWord">Input:</p>
-                    <p id="liveInputDisplay" class="hintWord">0000</p>
                     <div class="resultLayout">
-                        <p>Answer:</p>
+                        <p class="hintWord">Input:</p>
                         <p id="userAnswer">0000</p>
-                        <button id="submitLayout" onclick="mySubmitFunction(); return false;">Submit</button>
-                        <button id="submitLayoutTwo" onclick="resetGame(); return false;">Reset</button>
                         <p class="hint" onclick="myHintFunction(); return false;">🌟Hint</p>
                 </fieldset>
             </form>

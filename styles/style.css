@@ -82,6 +82,30 @@ html, body {
     padding-bottom: 40px;
 }
 
+.padWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* Row for digits 0–9 */
+.digitRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Row for Undo and New Game */
+.controlRow {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+
 #modalBackground{
     display: none;
     position: fixed;
@@ -118,6 +142,8 @@ html, body {
 .wrapFlex{
     display: flex;
     margin-bottom: 15px;
+    align-items: center;
+    justify-content: center;
 }
 
 fieldset{
@@ -126,11 +152,9 @@ fieldset{
     overflow: hidden;
 }
 
-#submitLayout,
-#submitLayoutTwo{
-    /*button decoration*/
+.numberButton{
     position: relative;
-    width: 120px;
+    width: 80px;
     padding: 0;
     margin: 10px 0 10px 0;
     font-weight: 600;
@@ -144,14 +168,37 @@ fieldset{
     font-family: 'Cairo', sans-serif;
     cursor: pointer;
 }
-#submitLayout:hover,
-#submitLayout:focus,
-#submitLayoutTwo:hover,
-#submitLayoutTwo:focus{
-    margin-top: 15px;
-    margin-bottom: 5px;
+
+.undoRestartButton{
+    position: relative;
+    width: 150px;
+    padding: 0;
+    margin: 10px 0 10px 0;
+    font-weight: 600;
+    text-align: center;
+    line-height: 50px;
+    color: #2E5266FF;
+    border-radius: 5px;
+    transition: all 0.2s ;
+    background: #9FB1BCFF;
+    box-shadow: 0px 5px 0px 0px #6E8898FF;
+    font-family: 'Cairo', sans-serif;
+    cursor: pointer;
+}
+
+/* Press-down effect */
+.numberButton:active,
+.undoRestartButton:active {
+    transform: translateY(5px);
     box-shadow: 0px 0px 0px 0px #6E8898FF;
 }
+
+/* Optional subtle hover glow or brightness */
+.numberButton:hover,
+.undoRestartButton:hover {
+    filter: brightness(1.05);
+}
+
 .hint{
     bottom:0;
     right:0;
@@ -196,15 +243,83 @@ fieldset{
     scale: 1.15;
 }
 
+#correctd{
+    margin-bottom:0;
+}
+#incorrectd{
+    margin-top:0;
+}
+
+
 .hintWord {
   text-align: center;
   font-weight: bold;
   margin-top: 10px;
-  color: #2554bb;
 }
 
-.hiddenInput {
-  display: none;
+.confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.confirm-dialog {
+  background-color: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.confirm-buttons button {
+  position: relative;
+  width: 80px;
+  height: 50px;
+  margin: 0 10px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 50px;
+  color: white;
+  border-radius: 5px;
+  transition: all 0.2s ease;
+  font-family: 'Cairo', sans-serif;
+  cursor: pointer;
+  box-shadow: 0px 5px 0px 0px;
+  border: none;
+}
+
+/* YES button – greenish */
+.confirm-buttons button.yes-button {
+  background: #4CAF50;
+  box-shadow: 0px 5px 0px 0px #388E3C;
+}
+
+.confirm-buttons button.yes-button:hover,
+.confirm-buttons button.yes-button:active {
+  background: #43A047;
+  transform: translateY(2px); /* Moves down */
+  box-shadow: 0px 2px 0px 0px #2E7D32; /* Flatter shadow */
+}
+
+/* NO button – reddish */
+.confirm-buttons button.no-button {
+  background: #f44336;
+  box-shadow: 0px 5px 0px 0px #c62828;
+}
+
+.confirm-buttons button.no-button:hover,
+.confirm-buttons button.no-button:active {
+  background: #e53935;
+  transform: translateY(2px); /* Moves down */
+  box-shadow: 0px 2px 0px 0px #b71c1c; /* Flatter shadow */
 }
 
 footer{

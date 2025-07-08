@@ -1,10 +1,11 @@
 //Global Variable(s)
 let trueAnswer;
 let trueAr = [];
-let tries = 0;
+let userTries = 0;
 
 //Reset Game
 function resetGame(){
+    userTries = 0;
     document.getElementById('tries').innerHTML = ""
     document.getElementById('correctd').innerHTML = ""
     document.getElementById('incorrectd').innerHTML = ""
@@ -15,10 +16,7 @@ function resetGame(){
     newListItem.style.color = "#EBA286";
     listResult.appendChild(newListItem);
     listResult.scrollTop = listResult.scrollHeight;
-    document.getElementById("submitLayout").style.color = "#2E5266FF";
-    document.getElementById("submitLayout").hidden = false;
-    document.getElementById("submitLayout").disabled = false;
-    tries = 0;
+    currentInput = "";
     myStartGame();
 }
 
@@ -39,17 +37,14 @@ function updateTextInput(val,id) {
 //user submit answer
 function mySubmitFunction() {
     let ar = [];
-    let answer;
-    let resultcomment;
-    for (let i = 1; i < 5; i++){
-        let x = 'textInput' + i;
-        ar[i-1] = parseInt(document.getElementById(x).value);
-            if (i === 1){
-                answer = "" + document.getElementById(x).value;
-            }else{
-                answer = answer + document.getElementById(x).value;
-            }
-        }
+    let resultcomment = "";
+    let answer = currentInput;
+
+    // Convert string to array of numbers
+    for (let i = 0; i < 4; i++) {
+        ar[i] = parseInt(currentInput[i]);
+    }
+
     document.getElementById('userAnswer').innerHTML = answer;
 
     //compare trueAnswer, correct digit(s), incorrect digit(s),correct digit(s) in worng position
@@ -61,29 +56,28 @@ function mySubmitFunction() {
 
     // First: check exact matches
     for (let i = 0; i < 4; i++) {
-    if (ar[i] === trueAr[i]) {
-        correctPlaceCount++;
-        trueUsed[i] = true;
-        userUsed[i] = true;
-    }
+        if (ar[i] === trueAr[i]) {
+            correctPlaceCount++;
+            trueUsed[i] = true;
+            userUsed[i] = true;
+        }
     }
 
     // Second: check for correct digits in wrong places
     for (let i = 0; i < 4; i++) {
-    if (userUsed[i]) continue;
+        if (userUsed[i]) continue;
 
-    for (let j = 0; j < 4; j++) {
-        if (!trueUsed[j] && ar[i] === trueAr[j]) {
-        wrongPlaceCount++;
-        trueUsed[j] = true;
-        break;
+        for (let j = 0; j < 4; j++) {
+            if (!trueUsed[j] && ar[i] === trueAr[j]) {
+                wrongPlaceCount++;
+                trueUsed[j] = true;
+                break;
+            }
         }
-    }
     }
 
     let incorrectCount = 4 - correctPlaceCount - wrongPlaceCount;
-    tries = tries + 1;
-
+    userTries = userTries + 1;
     //display comment
     if(correctPlaceCount){
         document.getElementById('correctd').innerHTML = "✅ Correct Digit(s) in Correct Position: " + correctPlaceCount
@@ -107,20 +101,18 @@ function mySubmitFunction() {
     }
 
     document.getElementById('incorrectd').innerHTML = incorrectdOutput;
-
+    currentInput = "";
     //check if wins
     if(correctPlaceCount === 4){
         document.getElementById('result').innerHTML = "🎉🎉 You have access the hidden code! 🎉🎉"
-        resultcomment += ", 🎉🎉 You have access the hidden code! 🎉🎉"
-        document.getElementById("submitLayout").style.color = "green";
-        document.getElementById("submitLayout").disabled = true;
-        document.getElementById("submitLayout").hidden = true;
-        document.getElementById("submitLayoutTwo").hidden = false;
+        resultcomment += ", You have access the hidden code!"
         document.getElementsByClassName("gifLayoutBox")[0].style.display = 'flex';
+        currentInput = "Unlocked";
+        
     }else{
         document.getElementById('result').innerHTML = ""
     }
-    document.getElementById('tries').innerHTML = "Attempt: " + tries
+    document.getElementById('tries').innerHTML = "Attempt: " + userTries
 
 
     let listResult = document.getElementsByClassName('resultOverflow')[0];
@@ -155,55 +147,127 @@ window.onclick = function(event) {
 }
 
 
-function createDigitInputs(containerId, count = 4) {
-  const container = document.getElementById(containerId);
+function createDigitPad(containerId = "digitPad") {
+  const pad = document.getElementById(containerId);
+  pad.innerHTML = ""; // Clear any existing buttons
 
-  for (let i = 1; i <= count; i++) {
-    const flexBox = document.createElement('div');
-    flexBox.className = 'flexBox';
+  // Create wrapper container for rows
+  const wrapper = document.createElement("div");
+  wrapper.className = "padWrapper"; // Vertical stack (column)
 
-    // Create <select>
-    const select = document.createElement('select');
-    select.onchange = function () {
-      updateTextInput(this.value, `textInput${i}`);
-    };
+  // First row: 0–9 buttons
+  const digitRow = document.createElement("div");
+  digitRow.className = "digitRow";
 
-    for (let j = 0; j < 10; j++) {
-      const option = document.createElement('option');
-      option.value = j;
-      option.textContent = j;
-      select.appendChild(option);
-    }
+  for (let i = 0; i <= 9; i++) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "numberButton";
+    btn.textContent = i;
+    btn.onclick = () => pressDigit(i);
+    digitRow.appendChild(btn);
+  }
 
-    // Create <input disabled>
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.id = `textInput${i}`;
-    input.value = '0';
-    input.className = 'hiddenInput';
-    input.disabled = true;
+  // Second row: Undo and New Game
+  const controlRow = document.createElement("div");
+  controlRow.className = "controlRow";
 
-    // Append to flexBox and then to container
-    flexBox.appendChild(select);
-    flexBox.appendChild(input);
-    container.appendChild(flexBox);
+  const undoBtn = document.createElement("button");
+  undoBtn.type = "button";
+  undoBtn.className = "undoRestartButton";
+  undoBtn.textContent = "↩️ Undo";
+  undoBtn.onclick = undoDigit;
+
+  const newGameBtn = document.createElement("button");
+  newGameBtn.type = "button";
+  newGameBtn.className = "undoRestartButton";
+  newGameBtn.textContent = "🔄 New Game";
+  newGameBtn.onclick = function () {
+        showCustomConfirm("Start a new game?", resetGame);
+  };
+
+  controlRow.appendChild(undoBtn);
+  controlRow.appendChild(newGameBtn);
+
+  // Append both rows to wrapper
+  wrapper.appendChild(digitRow);
+  wrapper.appendChild(controlRow);
+
+  // Add wrapper to pad container
+  pad.appendChild(wrapper);
+}
+
+let currentInput = ""; // to store the digits user pressed
+
+function pressDigit(digit) {
+  if (currentInput.length < 3) {
+    currentInput += digit;
+    updateDisplay();
+  }else{
+    currentInput += digit;
+    mySubmitFunction();
+    updateDisplay();
   }
 }
 
-function updateTextInput(val, id) {
-  document.getElementById(id).value = val;
+function undoDigit() {
+  // Remove the last digit
+  currentInput = currentInput.slice(0, -1);
+  updateDisplay();
+}
 
-  // Recalculate combined value
-  let inputString = "";
-  for (let i = 1; i <= 4; i++) {
-    inputString += document.getElementById("textInput" + i).value;
-  }
+function updateDisplay() {
+  // For example, display the current input in an element with id 'userAnswer' or 'liveInputDisplay'
+  document.getElementById('userAnswer').innerHTML = currentInput || "0";
+}
 
-  // Show in display paragraph
-  document.getElementById("liveInputDisplay").textContent = inputString;
 
-  // Also update the existing userAnswer field if needed
-  document.getElementById("userAnswer").innerHTML = inputString;
+function showCustomConfirm(message, onConfirm) {
+    // Create overlay
+    const overlay = document.createElement("div");
+    overlay.className = "confirm-overlay";
+
+    // Create dialog
+    const dialog = document.createElement("div");
+    dialog.className = "confirm-dialog";
+
+    const msg = document.createElement("p");
+    msg.textContent = message;
+
+    const btnContainer = document.createElement("div");
+    btnContainer.className = "confirm-buttons";
+
+    const yesBtn = document.createElement("button");
+    yesBtn.textContent = "Yes";
+    yesBtn.className = "yes-button";
+    yesBtn.onclick = () => {
+        onConfirm();
+        document.body.removeChild(overlay);
+    };
+
+    const noBtn = document.createElement("button");
+    noBtn.textContent = "No";
+    noBtn.className = "no-button";
+    noBtn.onclick = () => {
+        document.body.removeChild(overlay);
+    };
+
+    btnContainer.appendChild(yesBtn);
+    btnContainer.appendChild(noBtn);
+    dialog.appendChild(msg);
+    dialog.appendChild(btnContainer);
+    overlay.appendChild(dialog);
+    document.body.appendChild(overlay);
+
+    // Click outside the dialog = cancel
+    overlay.addEventListener("click", () => {
+        document.body.removeChild(overlay);
+    });
+
+    // Prevent overlay click from firing when clicking inside dialog
+    dialog.addEventListener("click", (e) => {
+        e.stopPropagation();
+    });
 }
 
 
@@ -212,7 +276,7 @@ function myStartGame(){
     // Call this once after DOM is ready
     // Prevent duplicate inputs
     if (document.getElementById("inputContainer").childElementCount === 0) {
-        createDigitInputs("inputContainer");
+        createDigitPad("inputContainer");
     }
     document.getElementsByClassName('secondScene')[0].style.display = 'block';
     // Allows digits 0–9
@@ -227,7 +291,6 @@ function myStartGame(){
         }
     document.getElementsByClassName('firstScene')[0].style.display = 'none';
     document.getElementsByClassName('headerLayout')[0].style.height = 'auto';
-    document.getElementById("submitLayoutTwo").hidden = true;
     document.getElementsByClassName("gifLayoutBox")[0].style.display = 'none';
     
 }
